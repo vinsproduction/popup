@@ -1,0 +1,91 @@
+// _________ MIXINS _________
+
+@require 'mixins'
+
+
+/* 
+	================
+	==== POPUPS ====
+	================
+*/
+
+
+body.popup-open
+	overflow hidden
+	position fixed
+
+#popups
+	
+	z-index 998
+	display none
+	overflow-y auto
+	overflow-x hidden
+	position fixed
+	height 100%
+	width 100%
+	top 0
+	left 0
+
+	.background
+
+		position fixed
+		height 100%
+		width 100%
+		top 0
+		left 0
+		overflow auto
+		background #000
+		opacity 0.8
+
+	.popup
+		z-index 999
+		position absolute
+		display none
+		width 100%
+		height 100%
+	
+		.inner
+			position relative
+			color #000
+			background #FFF
+			padding 30px
+			borderbox()
+
+			width 320px
+			min-height 200px
+			// border-radius 8px
+
+			.close
+				cursor pointer
+				position absolute
+				right 10px
+				top 10px
+				width 14px
+				height 14px
+				background url('../img/close-popup.png') center center no-repeat
+				z-index 1
+			
+			.btn
+				width 100%
+				padding 20px 0 0 0
+				a
+					margin 0 auto
+					borderbox()
+					block(200,40)
+					background #CCC
+					color #FFF
+					text-decoration none
+					text-align center
+					span
+						position relative
+						top 10px
+
+
+#popups .popup[data-popup-name="custom"]
+	.inner	
+		// height 1000px
+
+#popups .popup[data-popup-name="test"]
+	.inner
+		width 500px
+				

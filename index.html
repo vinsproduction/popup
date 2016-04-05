@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=0">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <script type="text/javascript" src="js/popup.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/popup.css">
+  <script>(function() {
+  var port, url;
+
+  port = 777;
+
+  url = "http://localhost:" + port + "/livereload.js";
+
+  window.document.write('<script type="text/javascript" src="' + url + '"></scr' + 'ipt>');
+
+  console.debug("[LiveReload] " + url);
+
+}).call(this);
+
+  </script>
+  <script>(function() {
+  $(function() {
+    popup.$popup.on('open', function(e, data) {});
+    return popup.$popup.on('close', function(e, data) {});
+  });
+
+}).call(this);
+
+  </script>
+  <style>body > p,
+body > h1 {
+  padding: 20px;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Popups</h1>
+  <p><a href="#" onclick="popup.open('test')">Test</a></p>
+  <p><a href="#" onclick="popup.open('success',{body:'Ура'} )">Success</a></p>
+  <p><a href="#" onclick="popup.open('error',{body:'Упс'} )">Error</a></p>
+  <p><a href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', top: 10, close: false, button: function(){ alert(1); popup.close(); } })">Custom</a></p>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius enim ut cursus pulvinar. Suspendisse non lacinia elit, vel eleifend mi. Aenean auctor lectus sit amet viverra mollis. Aliquam condimentum faucibus mi et tempus. Pellentesque quam risus, gravida in odio ac, aliquet ultricies arcu. Pellentesque dapibus rhoncus augue, id dictum erat faucibus nec. Donec sit amet dui faucibus, mattis ligula vel, suscipit arcu.
+    
+    Mauris accumsan quis sem in pretium. Aenean commodo placerat nisl, et facilisis mi semper in. Aenean nunc ante, maximus at porta eget, ornare et felis. Sed vel feugiat metus. Sed egestas dignissim eros vel tempor. Suspendisse eget ipsum vel arcu malesuada viverra. Aenean vitae ultrices magna. Nunc tincidunt tincidunt augue, quis pretium justo. Proin a lectus eu nisi tempor scelerisque. Nunc at blandit ante. Nam elementum rhoncus sodales. Cras vulputate risus quis libero ullamcorper, ac dignissim diam fermentum.
+    
+    Nullam commodo felis non libero feugiat maximus. Cras id lorem sem. Sed imperdiet ante at tincidunt dapibus. Curabitur efficitur congue mi, sit amet scelerisque erat blandit id. Nulla facilisi. Vivamus egestas tincidunt lectus sit amet vulputate. Cras iaculis urna sapien, egestas varius arcu dictum ac. Donec mattis libero lorem, non iaculis nisi facilisis consequat. Aliquam orci odio, maximus in luctus ut, euismod in risus. Cras eget tempor arcu.
+    
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam a ultrices massa. Nunc placerat libero quis scelerisque aliquam. Curabitur lacinia lobortis risus ac pellentesque. Mauris ut laoreet ex. Mauris nec convallis eros, in auctor ex. Nunc nec semper nulla. Nam elementum porta elit, id rhoncus nisi facilisis eu. Morbi mi felis, condimentum suscipit tristique vel, feugiat sed ante. Integer luctus ultrices turpis ultricies ornare. Ut condimentum rhoncus lacus. Integer elit leo, finibus eget tincidunt ut, finibus at purus. Donec a urna ultricies, vulputate quam et, placerat dui. Cras congue leo ut congue congue. In sapien risus, tristique ut erat non, feugiat convallis diam. Integer lorem felis, interdum molestie semper in, porttitor nec mauris.
+    
+    Ut gravida ullamcorper sem id tempor. Morbi consequat, elit non eleifend tempor, dolor erat rutrum nibh, quis posuere orci sem scelerisque mauris. Integer porta tellus odio, blandit euismod ligula eleifend id. Quisque ultrices elit ex, a tempus elit consectetur eget. Fusce nec risus aliquet, auctor felis finibus, ultrices nunc. Ut vestibulum condimentum ante. Aliquam interdum eros a magna aliquam faucibus. Proin efficitur lectus ut tortor pellentesque vulputate. Sed quis lectus id tortor ornare hendrerit. Suspendisse facilisis scelerisque lorem, id cursus nibh gravida in. Mauris vel mauris velit. Fusce quis lacus massa. Donec facilisis auctor elit vitae eleifend. Aenean sodales nunc vel faucibus eleifend.
+    
+    Vestibulum non ornare felis, id pellentesque nisl. Suspendisse scelerisque posuere gravida. Mauris non urna eu diam venenatis mattis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin magna risus, facilisis vel est vitae, aliquam commodo ipsum. Donec mattis lacinia augue, eu consectetur dui gravida id. Nam vitae sollicitudin orci, et imperdiet tellus. Sed vel tellus suscipit, placerat metus congue, tincidunt ligula. Aenean lacinia dui a libero consequat, vitae vehicula sem gravida. Quisque at lectus massa. Sed auctor mi velit, eget ultrices augue pulvinar non. Nunc nunc risus, laoreet id quam at, laoreet consectetur dolor. In hac habitasse platea dictumst. Donec hendrerit maximus laoreet.
+    
+    Vestibulum mattis mi a dolor imperdiet vestibulum non id orci. Suspendisse mollis mauris id tempor accumsan. Donec ante ipsum, vulputate vel fringilla vel, dignissim sed tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam gravida risus rhoncus metus vestibulum ultrices. Donec nec tempor erat, at blandit purus. Vestibulum finibus ac urna in porta. Sed viverra ante a tellus feugiat, et fringilla mi luctus. Nam in sollicitudin nulla. Sed eget tellus vulputate, lobortis quam blandit, porttitor turpis. Proin congue, augue at tristique egestas, ipsum ligula porta ex, iaculis euismod leo erat id ipsum. Etiam viverra nec velit ut consequat. Fusce in feugiat sem. Proin at aliquet augue. Nam volutpat odio a laoreet fringilla. Duis purus elit, scelerisque sit amet fringilla nec, dapibus nec ex.
+    
+    Aenean efficitur ex in viverra sodales. Aliquam vel augue a velit eleifend tincidunt et sed elit. Proin eleifend dolor dui, cursus volutpat quam tempus quis. Nunc placerat dignissim dolor a pretium. Nunc sit amet sem consequat, elementum nisl non, molestie turpis. Nunc dapibus nisi rutrum blandit malesuada. Donec nec congue nunc. Ut sit amet aliquet odio. Aliquam fermentum urna at enim ultrices, nec imperdiet mi aliquet.
+    
+    Sed sed ligula sed massa tristique placerat. Nunc congue dolor nec massa tempus euismod. Etiam luctus rutrum nisi. Morbi elementum massa in maximus euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque pretium, tortor vitae imperdiet ultrices, neque tortor tincidunt ipsum, ut bibendum leo enim eget tellus. Integer fermentum nulla a nisi porttitor, ac vestibulum eros ultricies. Donec vestibulum, velit in posuere maximus, eros diam volutpat ligula, vel pellentesque erat massa eget eros. Mauris magna turpis, hendrerit a tortor at, egestas condimentum sapien. Aliquam erat volutpat. Duis ultricies et nulla vel ullamcorper. In at vestibulum est, sit amet volutpat lectus.
+    
+    Sed pretium tincidunt ipsum, sit amet efficitur lacus tristique sed. Sed ex felis, finibus egestas euismod a, mattis quis lectus. Sed turpis ipsum, vestibulum sit amet tristique id, consectetur sed orci. Fusce nec velit laoreet, tincidunt elit et, placerat leo. Phasellus non felis risus. Vestibulum ultricies enim sapien, in condimentum ex aliquet porta. Morbi vel ante ac nisi vehicula laoreet. Donec volutpat auctor sapien, a aliquet turpis volutpat ac. Phasellus eu enim a arcu cursus molestie et eu sem. In hac habitasse platea dictumst. Aenean elit tellus, ornare et urna ornare, rutrum gravida nisi. Donec consectetur diam vel felis hendrerit accumsan. Maecenas diam nisi, scelerisque non semper non, suscipit at enim.
+    
+    
+  </p>
+  <div id="popups">
+    <div data-popup-name="custom" class="popup">
+      <div class="inner">
+        <div data-popup-close class="close"></div>
+        <div data-popup-title></div>
+        <div data-popup-body></div>
+        <div class="btn"><a href="#" data-popup-button><span>alert(1)</span></a></div>
+      </div>
+    </div>
+    <div data-popup-name="success" class="popup">
+      <div class="inner">
+        <div data-popup-close class="close"></div>
+        <div>Success</div>
+        <div data-popup-body></div>
+        <div class="btn"><a href="#" data-popup-close><span>Закрыть</span></a></div>
+      </div>
+    </div>
+    <div data-popup-name="error" class="popup">
+      <div class="inner">
+        <div data-popup-close class="close"></div>
+        <div>Error</div>
+        <div data-popup-body></div>
+        <div class="btn"><a href="#" data-popup-close><span>Закрыть</span></a></div>
+      </div>
+    </div>
+    <div data-popup-name="test" class="popup">
+      <div class="inner">
+        <div data-popup-close class="close"></div>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <div class="btn"><a href="#" data-popup-close><span>Закрыть</span></a></div>
+      </div>
+    </div>
+    <div data-popup-close class="background"></div>
+  </div>
+</body>
