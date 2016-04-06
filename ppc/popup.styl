@@ -45,7 +45,7 @@ body.popup-open
 		height 100%
 	
 		.inner
-			position relative
+			position absolute
 			color #000
 			background #FFF
 			padding 30px
@@ -81,11 +81,21 @@ body.popup-open
 						top 10px
 
 
-#popups .popup[data-popup-name="custom"]
-	.inner	
-		// height 1000px
+#popups .popup
+	
+	&[data-popup-name="custom"]
+		.inner
+			text-align center
+			[data-popup-title]
+				padding 10px 0
+			[data-popup-body]
+				padding 10px 0
 
-#popups .popup[data-popup-name="test"]
-	.inner
-		width 500px
-				
+	&[data-popup-name="custom"]
+		.inner	
+			// height 1000px
+
+	&[data-popup-name="test"]
+		.inner
+			width 500px
+					

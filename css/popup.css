@@ -41,7 +41,7 @@ body.popup-open {
   height: 100%;
 }
 #popups .popup .inner {
-  position: relative;
+  position: absolute;
   color: #000;
   background: #fff;
   padding: 30px;
@@ -79,6 +79,15 @@ body.popup-open {
 #popups .popup .inner .btn a span {
   position: relative;
   top: 10px;
+}
+#popups .popup[data-popup-name="custom"] .inner {
+  text-align: center;
+}
+#popups .popup[data-popup-name="custom"] .inner [data-popup-title] {
+  padding: 10px 0;
+}
+#popups .popup[data-popup-name="custom"] .inner [data-popup-body] {
+  padding: 10px 0;
 }
 #popups .popup[data-popup-name="test"] .inner {
   width: 500px;

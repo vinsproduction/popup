@@ -40,7 +40,7 @@ body > h1 {
   <p><a href="#" onclick="popup.open('test')">Test</a></p>
   <p><a href="#" onclick="popup.open('success',{body:'Ура'} )">Success</a></p>
   <p><a href="#" onclick="popup.open('error',{body:'Упс'} )">Error</a></p>
-  <p><a href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', top: 10, close: false, button: function(){ alert(1); popup.close(); } })">Custom</a></p>
+  <p><a href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', left: 10, top: 10, close: false, button: function(){ console.log('Closed'); popup.close(); } })">Custom</a></p>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius enim ut cursus pulvinar. Suspendisse non lacinia elit, vel eleifend mi. Aenean auctor lectus sit amet viverra mollis. Aliquam condimentum faucibus mi et tempus. Pellentesque quam risus, gravida in odio ac, aliquet ultricies arcu. Pellentesque dapibus rhoncus augue, id dictum erat faucibus nec. Donec sit amet dui faucibus, mattis ligula vel, suscipit arcu.
     
@@ -66,12 +66,10 @@ body > h1 {
   </p>
   <div id="popups">
     <div data-popup-name="custom" class="popup">
-      <div class="inner">
-        <div data-popup-close class="close"></div>
-        <div data-popup-title></div>
-        <div data-popup-body></div>
-        <div class="btn"><a href="#" data-popup-button><span>alert(1)</span></a></div>
-      </div>
+      <div data-popup-close class="close"></div>
+      <div data-popup-title></div>
+      <div data-popup-body></div>
+      <div class="btn"><a href="#" data-popup-button><span>console.log('Closed')</span></a></div>
     </div>
     <div data-popup-name="success" class="popup">
       <div class="inner">

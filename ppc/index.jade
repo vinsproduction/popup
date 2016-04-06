@@ -41,7 +41,7 @@ body
 	p: a(href="#" onclick="popup.open('test')") Test
 	p: a(href="#" onclick="popup.open('success',{body:'Ура'} )") Success
 	p: a(href="#" onclick="popup.open('error',{body:'Упс'} )") Error
-	p: a(href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', top: 10, close: false, button: function(){ alert(1); popup.close(); } })") Custom
+	p: a(href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', left: 10, top: 10, close: false, button: function(){ console.log('Closed'); popup.close(); } })") Custom
 
 	p.
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius enim ut cursus pulvinar. Suspendisse non lacinia elit, vel eleifend mi. Aenean auctor lectus sit amet viverra mollis. Aliquam condimentum faucibus mi et tempus. Pellentesque quam risus, gravida in odio ac, aliquet ultricies arcu. Pellentesque dapibus rhoncus augue, id dictum erat faucibus nec. Donec sit amet dui faucibus, mattis ligula vel, suscipit arcu.
@@ -68,12 +68,12 @@ body
 	#popups
 
 		.popup(data-popup-name="custom")
-			.inner
-				.close(data-popup-close)
-				div(data-popup-title)
-				div(data-popup-body)
-				.btn
-					a(href="#" data-popup-button): span alert(1)
+			//- .inner
+			.close(data-popup-close)
+			div(data-popup-title)
+			div(data-popup-body)
+			.btn
+				a(href="#" data-popup-button): span console.log('Closed')
 		
 		.popup(data-popup-name="success")
 			.inner

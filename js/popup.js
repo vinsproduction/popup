@@ -1,3 +1,8 @@
+
+/*
+	Popup
+	https://github.com/vinsproduction/popup
+ */
 var Popup, popup;
 
 if (!window.console) {
@@ -6,6 +11,10 @@ if (!window.console) {
 
 if (!window.console.log) {
   window.console.log = function() {};
+}
+
+if (!window.console.warn) {
+  window.console.warn = window.console.log;
 }
 
 Popup = (function() {
@@ -18,7 +27,6 @@ Popup = (function() {
   Popup.prototype.selectors = {
     popups: '#popups',
     popup: '[data-popup-name]',
-    inner: '.inner',
     close: '[data-popup-close]',
     button: '[data-popup-button]',
     custom: {
@@ -28,6 +36,7 @@ Popup = (function() {
   };
 
   Popup.prototype.classes = {
+    inner: 'inner',
     popupOpen: 'popup-open',
     mobile: 'popup-mobile'
   };
@@ -45,19 +54,23 @@ Popup = (function() {
         self.$popups.addClass(self.classes.mobile);
       }
       self.$popup.each(function() {
-        var name;
-        name = $(this).attr('data-popup-name');
+        var el, name;
+        el = $(this);
+        name = el.attr('data-popup-name');
+        if (!el.find('.' + self.classes.inner).size()) {
+          $(this).wrapInner("<div class='" + self.classes.inner + "'></div>");
+        }
         self.popups[name] = {
           name: name,
-          el: $(this),
-          inner: $(this).find(self.selectors.inner),
+          el: el,
+          inner: el.find('.' + self.classes.inner),
           opt: {
             close: true,
             fade: 300,
             button: false
           }
         };
-        return $(this).find(self.selectors.button).click(function() {
+        return el.find(self.selectors.button).click(function() {
           if (self.active && self.popups[self.active].opt.button) {
             self.popups[self.active].opt.button();
           }
@@ -147,6 +160,9 @@ Popup = (function() {
 
   Popup.prototype.open = function(name, opt) {
     var self;
+    if (opt == null) {
+      opt = {};
+    }
     self = this;
     $(function() {
       if (!name || !self.popups[name]) {

@@ -1,3 +1,8 @@
+###
+	Popup
+	https://github.com/vinsproduction/popup
+###
+
 
 if !window.console
 	window.console = {}
@@ -5,6 +10,8 @@ if !window.console
 if !window.console.log
 	window.console.log = ->
 
+if !window.console.warn
+	window.console.warn = window.console.log
 
 class Popup
 
@@ -18,7 +25,6 @@ class Popup
 
 		popups: '#popups'
 		popup: '[data-popup-name]'
-		inner: '.inner'
 		close: '[data-popup-close]'
 		button: '[data-popup-button]'
 
@@ -27,6 +33,7 @@ class Popup
 			body: 	'[data-popup-body]'
 
 	classes:
+		inner: 'inner'
 		popupOpen: 'popup-open'
 		mobile: 'popup-mobile'
 
@@ -47,18 +54,23 @@ class Popup
 
 			self.$popup.each  ->
 
-				name = $(@).attr('data-popup-name')
+				el = $(@)
+
+				name 	= el.attr('data-popup-name')
+
+				if !el.find('.' + self.classes.inner).size()
+					$(@).wrapInner("<div class='#{self.classes.inner}'></div>")
 
 				self.popups[name] =
 					name: name
-					el: $(@)
-					inner: $(@).find(self.selectors.inner)
+					el: el
+					inner: el.find('.' + self.classes.inner)
 					opt:
 						close: true
 						fade: 300
 						button: false
 
-				$(@).find(self.selectors.button).click ->
+				el.find(self.selectors.button).click ->
 					if self.active and self.popups[self.active].opt.button
 						self.popups[self.active].opt.button()
 					return false
@@ -142,7 +154,7 @@ class Popup
 
 		return
 
-	open: (name,opt) ->
+	open: (name,opt={}) ->
 
 		self = @
 
@@ -219,7 +231,6 @@ class Popup
 			return
 
 		return
-
 
 
 popup = new Popup
