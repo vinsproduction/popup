@@ -68,12 +68,12 @@ body
 	#popups
 
 		.popup(data-popup-name="custom")
-			//- .inner
-			.close(data-popup-close)
-			div(data-popup-title)
-			div(data-popup-body)
-			.btn
-				a(href="#" data-popup-button): span console.log('Closed')
+			.inner
+				.close(data-popup-close)
+				div(data-popup-title)
+				div(data-popup-body)
+				.btn
+					a(href="#" data-popup-button): span console.log('Closed')
 		
 		.popup(data-popup-name="success")
 			.inner
