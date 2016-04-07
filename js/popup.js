@@ -51,6 +51,7 @@ Popup = (function() {
 
   Popup.prototype.classes = {
     inner: 'inner',
+    closeDisabled: 'popup-close-disabled',
     popupOpen: 'popup-open',
     mobile: 'popup-mobile'
   };
@@ -189,6 +190,9 @@ Popup = (function() {
         self.popups[name].el.show();
         self.$popups.stop().fadeIn(self.popups[name].opt.fade);
         self.popups[name].el.addClass(self.classes.popupOpen);
+        if (!self.popups[name].opt.close) {
+          self.popups[name].el.addClass(self.classes.closeDisabled);
+        }
         $('body').addClass(self.classes.popupOpen);
         self.position(self.popups[name]);
         if (self.logs) {
@@ -206,18 +210,21 @@ Popup = (function() {
       var name;
       if (self.active) {
         name = self.active;
-        self.popups[name].el.removeClass(self.classes.popupOpen);
         self.$popups.stop().hide();
         self.popups[name].el.hide();
+        self.popups[name].el.removeClass(self.classes.popupOpen);
+        self.popups[name].el.removeClass(self.classes.closeDisabled);
         $('body').removeClass(self.classes.popupOpen);
         if (self.logs) {
           console.log('[Popup] close', self.popups[name]);
         }
         self.$popup.eq(0).trigger('close', [self.popups[name]]);
       } else {
-        self.$popups.removeClass(self.classes.popupOpen);
         self.$popup.hide();
         self.$popups.hide();
+        self.$popup.removeClass(self.classes.closeDisabled);
+        self.$popup.removeClass(self.classes.popupOpen);
+        self.$popups.removeClass(self.classes.popupOpen);
         $('body').removeClass(self.classes.popupOpen);
       }
       self.active = false;

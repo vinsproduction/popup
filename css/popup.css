@@ -61,6 +61,9 @@ body.popup-open {
   background: url("../img/close-popup.png") center center no-repeat;
   z-index: 1;
 }
+#popups .popup.popup-close-disabled .close {
+  display: none;
+}
 #popups .popup .inner .title {
   text-align: center;
   color: #000;

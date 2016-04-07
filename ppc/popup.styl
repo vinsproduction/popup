@@ -44,7 +44,7 @@ body.popup-open
 		display none
 		width 100%
 		height 100%
-	
+		
 		.inner
 			position absolute
 			borderbox()
@@ -63,6 +63,10 @@ body.popup-open
 				height 14px
 				background url('../img/close-popup.png') center center no-repeat
 				z-index 1
+				
+		&.popup-close-disabled
+			.close
+				display none
 
 
 #popups .popup

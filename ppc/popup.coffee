@@ -48,6 +48,7 @@ class Popup
 
 	classes:
 		inner: 'inner'
+		closeDisabled: 'popup-close-disabled'
 		popupOpen: 'popup-open'
 		mobile: 'popup-mobile'
 
@@ -185,6 +186,7 @@ class Popup
 				self.$popups.stop().fadeIn(self.popups[name].opt.fade)
 
 				self.popups[name].el.addClass(self.classes.popupOpen)
+				self.popups[name].el.addClass(self.classes.closeDisabled) if !self.popups[name].opt.close
 				$('body').addClass(self.classes.popupOpen)
 
 				self.position(self.popups[name])
@@ -209,9 +211,11 @@ class Popup
 
 				name = self.active
 
-				self.popups[name].el.removeClass(self.classes.popupOpen)
 				self.$popups.stop().hide()
 				self.popups[name].el.hide()
+
+				self.popups[name].el.removeClass(self.classes.popupOpen)
+				self.popups[name].el.removeClass(self.classes.closeDisabled)
 				$('body').removeClass(self.classes.popupOpen)
 
 				console.log('[Popup] close', self.popups[name]) if self.logs
@@ -220,10 +224,14 @@ class Popup
 
 			else
 
-				self.$popups.removeClass(self.classes.popupOpen)
+				
 				self.$popup.hide()
 				self.$popups.hide()
+				self.$popup.removeClass(self.classes.closeDisabled)
+				self.$popup.removeClass(self.classes.popupOpen)
+				self.$popups.removeClass(self.classes.popupOpen)
 				$('body').removeClass(self.classes.popupOpen)
+
 
 			self.active = false
 
