@@ -47,14 +47,12 @@ body.popup-open
 	
 		.inner
 			position absolute
+			borderbox()
 			color #000
 			background #FFF
-			padding 30px
-			borderbox()
-
 			width 320px
 			min-height 200px
-			// border-radius 8px
+			padding 50px 30px
 
 			.close
 				cursor pointer
@@ -65,38 +63,49 @@ body.popup-open
 				height 14px
 				background url('../img/close-popup.png') center center no-repeat
 				z-index 1
-			
-			.btn
-				width 100%
-				padding 20px 0 0 0
-				a
-					margin 0 auto
-					borderbox()
-					block(200,40)
-					background #CCC
-					color #FFF
-					text-decoration none
-					text-align center
-					span
-						position relative
-						top 10px
 
 
 #popups .popup
 	
-	&[data-popup-name="custom"]
-		.inner
-			text-align center
-			[data-popup-title]
-				padding 10px 0
-			[data-popup-body]
-				padding 10px 0
+	.inner
 
-	&[data-popup-name="custom"]
-		.inner	
-			// height 1000px
+		.title
+			text-align center
+			color #000
+			font-size 18px
+
+		.body
+			margin 30px 0 0 0
+			color #000
+			font-size 16px 
+			p
+				font-size 16px
+
+		.button
+			margin 30px auto 0 auto
+			padding 16px 35px 0 35px
+			borderbox()
+			display table
+			height 50px
+			min-width 100px
+			cursor pointer
+			background-color #005697
+			font-size 16px
+			text-align center
+			color #FFF
+			&:hover
+				background #004677
+	
+
+	&[data-popup-name="custom"],&[data-popup-name="success"],&[data-popup-name="error"]
+		.inner
+			.title
+				text-align center
+			.body
+				text-align center
+				
 
 	&[data-popup-name="test"]
 		.inner
-			width 500px
+			// 
 					

@@ -43,13 +43,13 @@ body.popup-open {
 }
 #popups .popup .inner {
   position: absolute;
-  color: #000;
-  background: #fff;
-  padding: 30px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  color: #000;
+  background: #fff;
   width: 320px;
   min-height: 200px;
+  padding: 50px 30px;
 }
 #popups .popup .inner .close {
   cursor: pointer;
@@ -61,35 +61,43 @@ body.popup-open {
   background: url("../img/close-popup.png") center center no-repeat;
   z-index: 1;
 }
-#popups .popup .inner .btn {
-  width: 100%;
-  padding: 20px 0 0 0;
+#popups .popup .inner .title {
+  text-align: center;
+  color: #000;
+  font-size: 18px;
 }
-#popups .popup .inner .btn a {
-  margin: 0 auto;
+#popups .popup .inner .body {
+  margin: 30px 0 0 0;
+  color: #000;
+  font-size: 16px;
+}
+#popups .popup .inner .body p {
+  font-size: 16px;
+}
+#popups .popup .inner .button {
+  margin: 30px auto 0 auto;
+  padding: 16px 35px 0 35px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  display: block;
-  width: 200px;
-  height: 40px;
-  background: #ccc;
+  display: table;
+  height: 50px;
+  min-width: 100px;
+  cursor: pointer;
+  background-color: #005697;
+  font-size: 16px;
+  text-align: center;
   color: #fff;
-  text-decoration: none;
+}
+#popups .popup .inner .button:hover {
+  background: #004677;
+}
+#popups .popup[data-popup-name="custom"] .inner .title,
+#popups .popup[data-popup-name="success"] .inner .title,
+#popups .popup[data-popup-name="error"] .inner .title {
   text-align: center;
 }
-#popups .popup .inner .btn a span {
-  position: relative;
-  top: 10px;
-}
-#popups .popup[data-popup-name="custom"] .inner {
+#popups .popup[data-popup-name="custom"] .inner .body,
+#popups .popup[data-popup-name="success"] .inner .body,
+#popups .popup[data-popup-name="error"] .inner .body {
   text-align: center;
-}
-#popups .popup[data-popup-name="custom"] .inner [data-popup-title] {
-  padding: 10px 0;
-}
-#popups .popup[data-popup-name="custom"] .inner [data-popup-body] {
-  padding: 10px 0;
-}
-#popups .popup[data-popup-name="test"] .inner {
-  width: 500px;
 }
