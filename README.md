@@ -7,7 +7,6 @@
 ```
 popup.open('popup name',options={})
 
-// options - не обязательные параметр
 ```
 
 ### Закрыть попап
