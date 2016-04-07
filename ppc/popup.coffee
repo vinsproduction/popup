@@ -21,6 +21,19 @@ class Popup
 
 	active: false
 
+	options:
+		top: 'auto'
+		left: 'auto'
+		right: 'auto'
+		bottom: 'auto'
+		close: true
+		fade: 300
+		buttonClick: false
+		title: ""
+		body: ""
+		button: "Закрыть"
+
+
 	selectors:
 
 		popups: '#popups'
@@ -31,6 +44,7 @@ class Popup
 		custom:
 			title: 	'[data-popup-title]'
 			body: 	'[data-popup-body]'
+			button: '[data-popup-button-name]'
 
 	classes:
 		inner: 'inner'
@@ -65,14 +79,13 @@ class Popup
 					name: name
 					el: el
 					inner: el.find('.' + self.classes.inner)
-					opt:
-						close: true
-						fade: 300
-						button: false
 
 				el.find(self.selectors.button).click ->
-					if self.active and self.popups[self.active].opt.button
-						self.popups[self.active].opt.button()
+					if self.active
+						if self.popups[self.active].opt.buttonClick
+							self.popups[self.active].opt.buttonClick()
+						else
+							self.close() if self.popups[self.active].opt.close
 					return false
 
 
@@ -108,14 +121,6 @@ class Popup
 		opt 	= popup.opt
 		inner = popup.inner
 
-		css =
-			'top': 'auto'
-			'left': 'auto'
-			'right': 'auto'
-			'bottom': 'auto'
-
-		inner.css(css)
-
 		windowWidth 	= if window.innerWidth? then innerWidth else $(window).width()
 		windowHeight 	= if window.innerHeight? then innerHeight else $(window).height()
 		popupHeight 	= inner.outerHeight()
@@ -127,18 +132,20 @@ class Popup
 		left = windowWidth / 2 - popupWidth / 2
 		left = 0 if left < 0
 
-		if opt.bottom?
+		css = {}
+
+		if opt.bottom isnt 'auto'
 			css.bottom = opt.bottom	
 		else
-			if opt.top?
+			if opt.top isnt 'auto'
 				css.top = opt.top
 			else
 				css.top = top
 
-		if opt.right?
+		if opt.right isnt 'auto'
 			css.right = opt.right
 		else
-			if opt.left?
+			if opt.left isnt 'auto'
 				css.left = opt.left
 			else
 				css.left = left
@@ -163,22 +170,16 @@ class Popup
 			return false if !name or !self.popups[name]
 
 			self.close() if self.active
-			
-			$.each opt, (k,v) ->
-				self.popups[name].opt[k] = v
-				return
+
+			self.popups[name].opt = $.extend(true,{},self.options,opt)
 
 			setTimeout(->
 
 				self.active = name
 
-				if self.popups[name].opt.title
-					self.popups[name].el.find(self.selectors.custom.title).empty()
-					self.popups[name].el.find(self.selectors.custom.title).html(self.popups[name].opt.title)
-
-				if self.popups[name].opt.body
-					self.popups[name].el.find(self.selectors.custom.body).empty()
-					self.popups[name].el.find(self.selectors.custom.body).html(self.popups[name].opt.body)
+				self.popups[name].el.find(self.selectors.custom.title).html(self.popups[name].opt.title)
+				self.popups[name].el.find(self.selectors.custom.body).html(self.popups[name].opt.body)
+				self.popups[name].el.find(self.selectors.custom.button).html(self.popups[name].opt.button)
 
 				self.popups[name].el.show()
 				self.$popups.stop().fadeIn(self.popups[name].opt.fade)
@@ -209,11 +210,9 @@ class Popup
 				name = self.active
 
 				self.popups[name].el.removeClass(self.classes.popupOpen)
-
-				self.$popups.fadeOut self.popups[name].opt.fade, ->
-
-					self.popups[name].el.hide()
-					$('body').removeClass(self.classes.popupOpen)
+				self.$popups.stop().hide()
+				self.popups[name].el.hide()
+				$('body').removeClass(self.classes.popupOpen)
 
 				console.log('[Popup] close', self.popups[name]) if self.logs
 

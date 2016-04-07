@@ -24,6 +24,19 @@ Popup = (function() {
 
   Popup.prototype.active = false;
 
+  Popup.prototype.options = {
+    top: 'auto',
+    left: 'auto',
+    right: 'auto',
+    bottom: 'auto',
+    close: true,
+    fade: 300,
+    buttonClick: false,
+    title: "",
+    body: "",
+    button: "Закрыть"
+  };
+
   Popup.prototype.selectors = {
     popups: '#popups',
     popup: '[data-popup-name]',
@@ -31,7 +44,8 @@ Popup = (function() {
     button: '[data-popup-button]',
     custom: {
       title: '[data-popup-title]',
-      body: '[data-popup-body]'
+      body: '[data-popup-body]',
+      button: '[data-popup-button-name]'
     }
   };
 
@@ -63,16 +77,17 @@ Popup = (function() {
         self.popups[name] = {
           name: name,
           el: el,
-          inner: el.find('.' + self.classes.inner),
-          opt: {
-            close: true,
-            fade: 300,
-            button: false
-          }
+          inner: el.find('.' + self.classes.inner)
         };
         return el.find(self.selectors.button).click(function() {
-          if (self.active && self.popups[self.active].opt.button) {
-            self.popups[self.active].opt.button();
+          if (self.active) {
+            if (self.popups[self.active].opt.buttonClick) {
+              self.popups[self.active].opt.buttonClick();
+            } else {
+              if (self.popups[self.active].opt.close) {
+                self.close();
+              }
+            }
           }
           return false;
         });
@@ -110,13 +125,6 @@ Popup = (function() {
     el = popup.el;
     opt = popup.opt;
     inner = popup.inner;
-    css = {
-      'top': 'auto',
-      'left': 'auto',
-      'right': 'auto',
-      'bottom': 'auto'
-    };
-    inner.css(css);
     windowWidth = window.innerWidth != null ? innerWidth : $(window).width();
     windowHeight = window.innerHeight != null ? innerHeight : $(window).height();
     popupHeight = inner.outerHeight();
@@ -130,19 +138,20 @@ Popup = (function() {
     if (left < 0) {
       left = 0;
     }
-    if (opt.bottom != null) {
+    css = {};
+    if (opt.bottom !== 'auto') {
       css.bottom = opt.bottom;
     } else {
-      if (opt.top != null) {
+      if (opt.top !== 'auto') {
         css.top = opt.top;
       } else {
         css.top = top;
       }
     }
-    if (opt.right != null) {
+    if (opt.right !== 'auto') {
       css.right = opt.right;
     } else {
-      if (opt.left != null) {
+      if (opt.left !== 'auto') {
         css.left = opt.left;
       } else {
         css.left = left;
@@ -171,19 +180,12 @@ Popup = (function() {
       if (self.active) {
         self.close();
       }
-      $.each(opt, function(k, v) {
-        self.popups[name].opt[k] = v;
-      });
+      self.popups[name].opt = $.extend(true, {}, self.options, opt);
       return setTimeout(function() {
         self.active = name;
-        if (self.popups[name].opt.title) {
-          self.popups[name].el.find(self.selectors.custom.title).empty();
-          self.popups[name].el.find(self.selectors.custom.title).html(self.popups[name].opt.title);
-        }
-        if (self.popups[name].opt.body) {
-          self.popups[name].el.find(self.selectors.custom.body).empty();
-          self.popups[name].el.find(self.selectors.custom.body).html(self.popups[name].opt.body);
-        }
+        self.popups[name].el.find(self.selectors.custom.title).html(self.popups[name].opt.title);
+        self.popups[name].el.find(self.selectors.custom.body).html(self.popups[name].opt.body);
+        self.popups[name].el.find(self.selectors.custom.button).html(self.popups[name].opt.button);
         self.popups[name].el.show();
         self.$popups.stop().fadeIn(self.popups[name].opt.fade);
         self.popups[name].el.addClass(self.classes.popupOpen);
@@ -205,10 +207,9 @@ Popup = (function() {
       if (self.active) {
         name = self.active;
         self.popups[name].el.removeClass(self.classes.popupOpen);
-        self.$popups.fadeOut(self.popups[name].opt.fade, function() {
-          self.popups[name].el.hide();
-          return $('body').removeClass(self.classes.popupOpen);
-        });
+        self.$popups.stop().hide();
+        self.popups[name].el.hide();
+        $('body').removeClass(self.classes.popupOpen);
         if (self.logs) {
           console.log('[Popup] close', self.popups[name]);
         }
