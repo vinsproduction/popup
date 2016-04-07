@@ -1,6 +1,6 @@
 # popup.js
 
-[Пример] (http://vinsproduction.com/projects/popup)
+[Пример] (http://vinsproduction.com/dev/popup)
 
 ### Открыть попап
 
