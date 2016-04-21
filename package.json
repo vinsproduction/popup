@@ -13,6 +13,7 @@
     "coffee-script": "*",
     "stylus": "*",
     "jade": "*",
+    "jstransformer-stylus": "*",
     "jstransformer-coffee-script": "*"
   }
 }

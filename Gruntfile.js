@@ -91,7 +91,7 @@ module.exports = function(grunt) {
 			livereload: {
 	      // Here we watch the files the sass task will compile to
 	      // These files are sent to the live reload server after sass compiles to them
-	      options: { livereload: 777 },
+	      options: { livereload: true },
 	      files: [
 		      '**/*',
 		      '!**/node_modules/**'

@@ -89,6 +89,7 @@ class Popup
 							self.close() if self.popups[self.active].opt.close
 					return false
 
+				return
 
 			self.$popups.find(self.selectors.close).click ->
 				if self.active and self.popups[self.active].opt.close

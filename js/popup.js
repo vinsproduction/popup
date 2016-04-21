@@ -80,7 +80,7 @@ Popup = (function() {
           el: el,
           inner: el.find('.' + self.classes.inner)
         };
-        return el.find(self.selectors.button).click(function() {
+        el.find(self.selectors.button).click(function() {
           if (self.active) {
             if (self.popups[self.active].opt.buttonClick) {
               self.popups[self.active].opt.buttonClick();
