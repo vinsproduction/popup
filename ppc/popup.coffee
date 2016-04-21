@@ -100,7 +100,7 @@ class Popup
 				if self.active and self.popups[self.active].opt.close
 					if !$(event.target).closest(self.popups[self.active].inner).length and !$(event.target).is(self.popups[self.active].inner)
 						self.close(self.active)
-				return false
+				return
 
 			# $(window).scroll ->
 			# 	self.position(self.popups[self.active]) if self.active
