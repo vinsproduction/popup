@@ -28,7 +28,9 @@ class Popup
 		bottom: 'auto'
 		close: true
 		fade: 300
+		closeClick: false
 		buttonClick: false
+		bgClick: false
 		title: ""
 		body: ""
 		button: "Закрыть"
@@ -81,25 +83,30 @@ class Popup
 					el: el
 					inner: el.find('.' + self.classes.inner)
 
-				el.find(self.selectors.button).click ->
-					if self.active
-						if self.popups[self.active].opt.buttonClick
-							self.popups[self.active].opt.buttonClick()
-						else
-							self.close() if self.popups[self.active].opt.close
-					return false
 
-				return
+			self.$popups.find(self.selectors.button).click ->
+				if self.active
+					if self.popups[self.active].opt.buttonClick
+						self.popups[self.active].opt.buttonClick()
+					else
+						self.close(self.active) if self.popups[self.active].opt.close
+				return false
 
 			self.$popups.find(self.selectors.close).click ->
-				if self.active and self.popups[self.active].opt.close
-					self.close(self.active)
+				if self.active
+					if self.popups[self.active].opt.closeClick
+						self.popups[self.active].opt.closeClick()
+					else
+						self.close(self.active) if self.popups[self.active].opt.close
 				return false
 
 			self.$popups.click (event) ->
-				if self.active and self.popups[self.active].opt.close
+				if self.active
 					if !$(event.target).closest(self.popups[self.active].inner).length and !$(event.target).is(self.popups[self.active].inner)
-						self.close(self.active)
+						if self.popups[self.active].opt.bgClick
+							self.popups[self.active].opt.bgClick()
+						else
+							self.close(self.active) if self.popups[self.active].opt.close
 				return
 
 			# $(window).scroll ->
@@ -187,7 +194,7 @@ class Popup
 				self.$popups.stop().fadeIn(self.popups[name].opt.fade)
 
 				self.popups[name].el.addClass(self.classes.popupOpen)
-				self.popups[name].el.addClass(self.classes.closeDisabled) if !self.popups[name].opt.close
+				self.popups[name].el.addClass(self.classes.closeDisabled) if !self.popups[name].opt.close and !self.popups[name].opt.closeClick
 				$('body').addClass(self.classes.popupOpen)
 
 				self.position(self.popups[name])

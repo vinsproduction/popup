@@ -31,7 +31,9 @@ Popup = (function() {
     bottom: 'auto',
     close: true,
     fade: 300,
+    closeClick: false,
     buttonClick: false,
+    bgClick: false,
     title: "",
     body: "",
     button: "Закрыть"
@@ -75,34 +77,46 @@ Popup = (function() {
         if (!el.find('.' + self.classes.inner).size()) {
           $(this).wrapInner("<div class='" + self.classes.inner + "'></div>");
         }
-        self.popups[name] = {
+        return self.popups[name] = {
           name: name,
           el: el,
           inner: el.find('.' + self.classes.inner)
         };
-        el.find(self.selectors.button).click(function() {
-          if (self.active) {
-            if (self.popups[self.active].opt.buttonClick) {
-              self.popups[self.active].opt.buttonClick();
-            } else {
-              if (self.popups[self.active].opt.close) {
-                self.close();
-              }
+      });
+      self.$popups.find(self.selectors.button).click(function() {
+        if (self.active) {
+          if (self.popups[self.active].opt.buttonClick) {
+            self.popups[self.active].opt.buttonClick();
+          } else {
+            if (self.popups[self.active].opt.close) {
+              self.close(self.active);
             }
           }
-          return false;
-        });
+        }
+        return false;
       });
       self.$popups.find(self.selectors.close).click(function() {
-        if (self.active && self.popups[self.active].opt.close) {
-          self.close(self.active);
+        if (self.active) {
+          if (self.popups[self.active].opt.closeClick) {
+            self.popups[self.active].opt.closeClick();
+          } else {
+            if (self.popups[self.active].opt.close) {
+              self.close(self.active);
+            }
+          }
         }
         return false;
       });
       self.$popups.click(function(event) {
-        if (self.active && self.popups[self.active].opt.close) {
+        if (self.active) {
           if (!$(event.target).closest(self.popups[self.active].inner).length && !$(event.target).is(self.popups[self.active].inner)) {
-            self.close(self.active);
+            if (self.popups[self.active].opt.bgClick) {
+              self.popups[self.active].opt.bgClick();
+            } else {
+              if (self.popups[self.active].opt.close) {
+                self.close(self.active);
+              }
+            }
           }
         }
       });
@@ -189,7 +203,7 @@ Popup = (function() {
         self.popups[name].el.show();
         self.$popups.stop().fadeIn(self.popups[name].opt.fade);
         self.popups[name].el.addClass(self.classes.popupOpen);
-        if (!self.popups[name].opt.close) {
+        if (!self.popups[name].opt.close && !self.popups[name].opt.closeClick) {
           self.popups[name].el.addClass(self.classes.closeDisabled);
         }
         $('body').addClass(self.classes.popupOpen);

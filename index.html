@@ -41,8 +41,9 @@ main > h1 {
     <p><a href="#" onclick="popup.open('test')">Test</a></p>
     <p><a href="#" onclick="popup.open('success',{body:'Ура'} )">Success</a></p>
     <p><a href="#" onclick="popup.open('error',{body:'Упс'} )">Error</a></p>
-    <p><a href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', left: 10, top: 10, close: false, button: 'console.log(1)', buttonClick: function(){ console.log('Closed'); popup.close(); } })">Custom</a></p>
-    <p><a href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', button: 'Открыть попап Test', buttonClick: function(){ popup.open('test');} })">Custom 2</a></p>
+    <p><a href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', left: 10, top: 10, close: false, button: 'console.log(1)', buttonClick: function(){ console.log('Closed'); popup.close(); } })">Custom 1</a></p>
+    <p><a href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', left: 10, top: 10, close: false, closeClick: function(){ console.log('Closed by close'); popup.close(); }, buttonClick: function(){ console.log('Closed by button'); popup.close(); },bgClick: function(){ console.log('Background Click!'); }, })">Custom 2</a></p>
+    <p><a href="#" onclick="popup.open('custom',{title: 'Hello', body:'World', button: 'Открыть попап Test', buttonClick: function(){ popup.open('test');} })">Custom 3</a></p>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius enim ut cursus pulvinar. Suspendisse non lacinia elit, vel eleifend mi. Aenean auctor lectus sit amet viverra mollis. Aliquam condimentum faucibus mi et tempus. Pellentesque quam risus, gravida in odio ac, aliquet ultricies arcu. Pellentesque dapibus rhoncus augue, id dictum erat faucibus nec. Donec sit amet dui faucibus, mattis ligula vel, suscipit arcu.
       
