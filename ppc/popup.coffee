@@ -21,6 +21,8 @@ class Popup
 
 	active: false
 
+	bodyScroll: 0
+
 	options:
 		top: 'auto'
 		left: 'auto'
@@ -178,6 +180,8 @@ class Popup
 
 			return false if !name or !self.popups[name]
 
+			self.bodyScroll = $(window).scrollTop()
+
 			self.close() if self.active
 
 			self.popups[name].opt = $.extend(true,{},self.options,opt)
@@ -240,6 +244,7 @@ class Popup
 				self.$popups.removeClass(self.classes.popupOpen)
 				$('body').removeClass(self.classes.popupOpen)
 
+			$('html,body').scrollTop(self.bodyScroll)
 
 			self.active = false
 

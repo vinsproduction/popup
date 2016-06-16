@@ -24,6 +24,8 @@ Popup = (function() {
 
   Popup.prototype.active = false;
 
+  Popup.prototype.bodyScroll = 0;
+
   Popup.prototype.options = {
     top: 'auto',
     left: 'auto',
@@ -191,6 +193,7 @@ Popup = (function() {
       if (!name || !self.popups[name]) {
         return false;
       }
+      self.bodyScroll = $(window).scrollTop();
       if (self.active) {
         self.close();
       }
@@ -240,6 +243,7 @@ Popup = (function() {
         self.$popups.removeClass(self.classes.popupOpen);
         $('body').removeClass(self.classes.popupOpen);
       }
+      $('html,body').scrollTop(self.bodyScroll);
       self.active = false;
     });
   };
