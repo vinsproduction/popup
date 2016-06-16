@@ -24,8 +24,6 @@ Popup = (function() {
 
   Popup.prototype.active = false;
 
-  Popup.prototype.bodyScroll = 0;
-
   Popup.prototype.options = {
     top: 'auto',
     left: 'auto',
@@ -123,9 +121,11 @@ Popup = (function() {
         }
       });
       $(window).resize(function() {
-        if (self.active) {
-          return self.position(self.popups[self.active]);
-        }
+        return setTimeout(function() {
+          if (self.active) {
+            return self.position(self.popups[self.active]);
+          }
+        }, 100);
       });
       if (self.logs) {
         console.log('[Popup] init', self.popups);
@@ -135,7 +135,7 @@ Popup = (function() {
   }
 
   Popup.prototype.position = function(popup) {
-    var css, el, inner, left, name, opt, popupHeight, popupWidth, self, top, windowHeight, windowScroll, windowWidth;
+    var css, el, inner, left, name, opt, popupHeight, popupWidth, self, top, windowHeight, windowWidth;
     self = this;
     name = popup.name;
     el = popup.el;
@@ -145,8 +145,7 @@ Popup = (function() {
     windowHeight = window.innerHeight != null ? innerHeight : $(window).height();
     popupHeight = inner.outerHeight();
     popupWidth = inner.outerWidth();
-    windowScroll = $(window).scrollTop();
-    top = windowHeight / 2 - popupHeight / 2 + windowScroll;
+    top = windowHeight / 2 - popupHeight / 2;
     if (top < 0) {
       top = 0;
     }
@@ -193,12 +192,11 @@ Popup = (function() {
       if (!name || !self.popups[name]) {
         return false;
       }
-      self.bodyScroll = $(window).scrollTop();
       if (self.active) {
         self.close();
       }
       self.popups[name].opt = $.extend(true, {}, self.options, opt);
-      return setTimeout(function() {
+      setTimeout(function() {
         self.active = name;
         self.popups[name].el.find(self.selectors.custom.title).html(self.popups[name].opt.title);
         self.popups[name].el.find(self.selectors.custom.body).html(self.popups[name].opt.body);
@@ -215,7 +213,7 @@ Popup = (function() {
           console.log('[Popup] open', self.popups[name]);
         }
         self.$popup.eq(0).trigger('open', [self.popups[name]]);
-      }, 0);
+      }, 100);
     });
   };
 
@@ -243,7 +241,6 @@ Popup = (function() {
         self.$popups.removeClass(self.classes.popupOpen);
         $('body').removeClass(self.classes.popupOpen);
       }
-      $('html,body').scrollTop(self.bodyScroll);
       self.active = false;
     });
   };

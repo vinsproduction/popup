@@ -21,8 +21,6 @@ class Popup
 
 	active: false
 
-	bodyScroll: 0
-
 	options:
 		top: 'auto'
 		left: 'auto'
@@ -115,7 +113,9 @@ class Popup
 			# 	self.position(self.popups[self.active]) if self.active
 
 			$(window).resize ->
-				self.position(self.popups[self.active]) if self.active
+				setTimeout(->
+					self.position(self.popups[self.active]) if self.active
+				,100)
 		
 			console.log('[Popup] init', self.popups) if self.logs
 
@@ -136,9 +136,8 @@ class Popup
 		windowHeight 	= if window.innerHeight? then innerHeight else $(window).height()
 		popupHeight 	= inner.outerHeight()
 		popupWidth 		= inner.outerWidth()
-		windowScroll 	= $(window).scrollTop()
 
-		top = windowHeight / 2 - popupHeight / 2 + windowScroll
+		top = windowHeight / 2 - popupHeight / 2
 		top = 0 if top < 0
 		left = windowWidth / 2 - popupWidth / 2
 		left = 0 if left < 0
@@ -180,8 +179,6 @@ class Popup
 
 			return false if !name or !self.popups[name]
 
-			self.bodyScroll = $(window).scrollTop()
-
 			self.close() if self.active
 
 			self.popups[name].opt = $.extend(true,{},self.options,opt)
@@ -209,7 +206,9 @@ class Popup
 
 				return
 
-			,0)
+			,100)
+
+			return
 
 		return
 
@@ -243,8 +242,6 @@ class Popup
 				self.$popup.removeClass(self.classes.popupOpen)
 				self.$popups.removeClass(self.classes.popupOpen)
 				$('body').removeClass(self.classes.popupOpen)
-
-			$('html,body').scrollTop(self.bodyScroll)
 
 			self.active = false
 
