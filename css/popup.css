@@ -18,21 +18,15 @@ body.popup-open {
   width: 100%;
   top: 0;
   left: 0;
-}
-#popups .background {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  overflow: auto;
-  background: #000;
-  opacity: 0.8;
-  -webkit-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  -moz-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  -o-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  -webkit-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#60000000,endColorstr=#60000000);
+  -moz-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#60000000,endColorstr=#60000000);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#60000000,endColorstr=#60000000);
+  -o-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#60000000,endColorstr=#60000000);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#60000000,endColorstr=#60000000);
+  background: rgba(0,0,0,0.6);
 }
 #popups .popup {
   z-index: 999;
