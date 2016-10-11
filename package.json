@@ -1,7 +1,14 @@
 {
-  "name": "popup",
-  "version": "0.0.1",
-  "dependencies": {
+  "name": "v-popup",
+  "version": "1.0.0",
+  "main": "js/popup.js",
+  "license": "MIT",
+  "repository": "vinsproduction/popup",
+  "files": [
+    "README.md",
+    "js/popup.js"
+  ],
+  "devDependencies": {
     "express": "3.2.0",
     "grunt": "*",
     "grunt-contrib-uglify": "*",

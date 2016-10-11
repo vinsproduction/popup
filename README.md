@@ -1,5 +1,11 @@
 # popup.js
 
+NPM
+
+```sh
+npm install v-popup
+```
+
 [Пример] (http://vinsproduction.com/dev/popup)
 
 ### Открыть попап
