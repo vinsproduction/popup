@@ -1,6 +1,6 @@
 {
   "name": "v-popup",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "js/popup.js",
   "license": "MIT",
   "repository": "vinsproduction/popup",
