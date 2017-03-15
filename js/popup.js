@@ -74,7 +74,7 @@ Popup = (function() {
         var el, name;
         el = $(this);
         name = el.attr('data-popup-name');
-        if (!el.find('.' + self.classes.inner).size()) {
+        if (!el.find('.' + self.classes.inner).length) {
           $(this).wrapInner("<div class='" + self.classes.inner + "'></div>");
         }
         return self.popups[name] = {

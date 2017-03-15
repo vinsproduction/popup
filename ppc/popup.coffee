@@ -75,7 +75,7 @@ class Popup
 
 				name 	= el.attr('data-popup-name')
 
-				if !el.find('.' + self.classes.inner).size()
+				if !el.find('.' + self.classes.inner).length
 					$(@).wrapInner("<div class='#{self.classes.inner}'></div>")
 
 				self.popups[name] =
