@@ -127,6 +127,13 @@ Popup = (function() {
           }
         }, 100);
       });
+      window.addEventListener('orientationchange', function() {
+        return setTimeout(function() {
+          if (self.active) {
+            return self.position(self.popups[self.active]);
+          }
+        }, 100);
+      });
       if (self.logs) {
         console.log('[Popup] init', self.popups);
       }
@@ -141,6 +148,7 @@ Popup = (function() {
     el = popup.el;
     opt = popup.opt;
     inner = popup.inner;
+    inner.removeAttr('style');
     windowWidth = window.innerWidth != null ? innerWidth : $(window).width();
     windowHeight = window.innerHeight != null ? innerHeight : $(window).height();
     popupHeight = inner.outerHeight();

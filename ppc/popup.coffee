@@ -116,6 +116,11 @@ class Popup
 				setTimeout(->
 					self.position(self.popups[self.active]) if self.active
 				,100)
+
+			window.addEventListener 'orientationchange', ->
+				setTimeout(->
+					self.position(self.popups[self.active]) if self.active
+				,100)
 		
 			console.log('[Popup] init', self.popups) if self.logs
 
@@ -131,6 +136,9 @@ class Popup
 		el 		= popup.el
 		opt 	= popup.opt
 		inner = popup.inner
+
+		# clear style
+		inner.removeAttr('style')
 
 		windowWidth 	= if window.innerWidth? then innerWidth else $(window).width()
 		windowHeight 	= if window.innerHeight? then innerHeight else $(window).height()
